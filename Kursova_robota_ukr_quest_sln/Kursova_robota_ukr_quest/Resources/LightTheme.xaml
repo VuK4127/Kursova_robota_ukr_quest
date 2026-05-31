@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="WindowBackground"    Color="#EEF2F7"/>
+    <SolidColorBrush x:Key="MainTextBrush"       Color="#1A1A2E"/>
+    <SolidColorBrush x:Key="CardBackground"      Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="CardBackgroundAlt"   Color="#F0F4F8"/>
+    <SolidColorBrush x:Key="SubtleText"          Color="#6B7280"/>
+    <SolidColorBrush x:Key="ButtonExitBrush"     Color="#4A5568"/>
+    <SolidColorBrush x:Key="ButtonExitHoverBrush" Color="#2D3748"/>
+    <SolidColorBrush x:Key="ThemeIconForeground" Color="#1A1A2E"/>
+    <SolidColorBrush x:Key="InputBackground"     Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="InputBorder"         Color="#D1D5DB"/>
+</ResourceDictionary>

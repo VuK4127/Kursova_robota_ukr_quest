@@ -1,0 +1,64 @@
+<Page x:Class="Kursova_robota_ukr_quest.Views.FinishPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Результат">
+
+    <Grid Background="{DynamicResource WindowBackground}">
+        <Border Style="{StaticResource CardStyle}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                MinWidth="320" MaxWidth="400" Margin="20">
+            <StackPanel HorizontalAlignment="Center">
+
+                <!-- Emoji result -->
+                <TextBlock x:Name="EmojiText" Text="🎉" FontSize="48"
+                           HorizontalAlignment="Center" Margin="0,0,0,6"/>
+
+                <TextBlock x:Name="TitleText" Text="Рівень завершено!"
+                           FontSize="24" FontWeight="Bold"
+                           FontFamily="Helvetica Neue, Arial, sans-serif"
+                           Foreground="{DynamicResource MainTextBrush}"
+                           HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <!-- Score card -->
+                <Border Background="{DynamicResource CardBackgroundAlt}" CornerRadius="12"
+                        Padding="24,16" Margin="0,0,0,8">
+                    <StackPanel>
+                        <TextBlock Text="Правильних відповідей"
+                                   FontSize="13" FontFamily="Helvetica Neue, Arial, sans-serif"
+                                   Foreground="{DynamicResource SubtleText}"
+                                   HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock x:Name="ResultText" Text="6 з 10"
+                                   FontSize="44" FontWeight="Bold"
+                                   FontFamily="Helvetica Neue, Arial, sans-serif"
+                                   Foreground="#1A73E8"
+                                   HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                        <TextBlock x:Name="PercentText" Text="60%"
+                                   FontSize="16" FontFamily="Helvetica Neue, Arial, sans-serif"
+                                   Foreground="{DynamicResource SubtleText}"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <TextBlock x:Name="CommentText" Text="Непогано! Спробуйте ще раз."
+                           FontSize="14" FontFamily="Helvetica Neue, Arial, sans-serif"
+                           Foreground="{DynamicResource SubtleText}"
+                           HorizontalAlignment="Center" TextAlignment="Center"
+                           TextWrapping="Wrap" Margin="0,0,0,24"/>
+
+                <!-- Buttons -->
+                <Button x:Name="RetryBtn" Content="ПОВТОРИТИ РІВЕНЬ" Click="Retry_Click"
+                        Style="{StaticResource MainButtonStyle}"
+                        Background="#34A853" Width="260" Margin="0,0,0,10"/>
+
+                <Button Content="ОБРАТИ РІВЕНЬ" Click="LevelSelect_Click"
+                        Style="{StaticResource MainButtonStyle}"
+                        Background="#1A73E8" Width="260" Margin="0,0,0,10"/>
+
+                <Button Content="НА ПОЧАТОК" Click="ToMenu_Click"
+                        Style="{StaticResource ExitButtonStyle}"
+                        Width="260"/>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

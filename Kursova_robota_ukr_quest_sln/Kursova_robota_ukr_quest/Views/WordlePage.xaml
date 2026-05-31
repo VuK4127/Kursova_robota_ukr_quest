@@ -1,0 +1,158 @@
+<Page x:Class="Kursova_robota_ukr_quest.Views.WordlePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Вордл"
+      Loaded="Page_Loaded">
+
+    <Grid Background="{DynamicResource WindowBackground}">
+
+        <!-- Main card -->
+        <Border Style="{StaticResource CardStyle}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                MinWidth="360" MaxWidth="440" Margin="16">
+            <StackPanel>
+
+                <!-- Title -->
+                <TextBlock Text="ВОРДЛ" FontSize="26" FontWeight="Bold"
+                           FontFamily="Helvetica Neue, Arial, sans-serif"
+                           Foreground="{DynamicResource MainTextBrush}"
+                           HorizontalAlignment="Center" Margin="0,0,0,4"/>
+
+                <TextBlock Text="Вгадайте українське слово з 5 букв за 6 спроб"
+                           FontSize="12"
+                           FontFamily="Helvetica Neue, Arial, sans-serif"
+                           Foreground="{DynamicResource SubtleText}"
+                           HorizontalAlignment="Center" Margin="0,0,0,16"
+                           TextWrapping="Wrap" TextAlignment="Center"/>
+
+                <!-- Guess grid -->
+                <ItemsControl x:Name="GuessGrid" HorizontalAlignment="Center" Margin="0,0,0,14">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" Margin="0,0,0,6">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Width="52" Height="52" Margin="3,0"
+                                                CornerRadius="8"
+                                                Background="{Binding CellBackground}"
+                                                BorderBrush="{Binding CellBorder}"
+                                                BorderThickness="2">
+                                            <TextBlock Text="{Binding Letter}"
+                                                       FontSize="22" FontWeight="Bold"
+                                                       FontFamily="Helvetica Neue, Arial, sans-serif"
+                                                       Foreground="{Binding LetterColor}"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- Status -->
+                <TextBlock x:Name="StatusText" FontSize="14" FontWeight="Bold"
+                           FontFamily="Helvetica Neue, Arial, sans-serif"
+                           HorizontalAlignment="Center" Margin="0,0,0,12"
+                           TextWrapping="Wrap" TextAlignment="Center"/>
+
+                <!-- Input -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
+                    <TextBox x:Name="GuessInput"
+                            
+                             Width="185" FontSize="18" FontWeight="Bold"
+                             MaxLength="5" CharacterCasing="Upper"
+                             Margin="0,0,10,0"
+                             KeyDown="GuessInput_KeyDown"
+                             TextChanged="GuessInput_TextChanged"/>
+                    <Button Content="ВВЕСТИ" Style="{StaticResource MainButtonStyle}"
+                            Background="#1A73E8" Width="100"
+                            Click="Submit_Click"/>
+                </StackPanel>
+
+                <!-- Legend -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,16">
+                    <Border Width="20" Height="20" CornerRadius="4" Background="#34A853" Margin="0,0,4,0"/>
+                    <TextBlock Text="— правильне місце" FontSize="11"
+                               Foreground="{DynamicResource SubtleText}"
+                               VerticalAlignment="Center" Margin="0,0,14,0"/>
+                    <Border Width="20" Height="20" CornerRadius="4" Background="#FBBC05" Margin="0,0,4,0"/>
+                    <TextBlock Text="— не те місце" FontSize="11"
+                               Foreground="{DynamicResource SubtleText}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Bottom buttons -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="НОВА ГРА" Style="{StaticResource MainButtonStyle}"
+                            Background="#34A853" Width="130" Margin="0,0,10,0"
+                            Click="Restart_Click"/>
+                    <Button Content="НАЗАД" Style="{StaticResource ExitButtonStyle}"
+                            Width="120" Click="Back_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <!-- ═══════════ GAME OVER OVERLAY ═══════════ -->
+        <Grid x:Name="GameOverOverlay" Visibility="Collapsed">
+
+            <!-- Dim background -->
+            <Rectangle Fill="#AA000000"/>
+
+            <!-- Dialog card -->
+            <Border Background="{DynamicResource CardBackground}"
+                    CornerRadius="18" Padding="36,32"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    MinWidth="280" MaxWidth="340"
+                    Effect="{x:Null}">
+                <StackPanel HorizontalAlignment="Center">
+
+                    <!-- Icon -->
+                    <TextBlock Text="😔" FontSize="52"
+                               HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                    <!-- Title -->
+                    <TextBlock Text="Ви програли!" FontSize="24" FontWeight="Bold"
+                               FontFamily="Helvetica Neue, Arial, sans-serif"
+                               Foreground="{DynamicResource MainTextBrush}"
+                               HorizontalAlignment="Center" Margin="0,0,0,8"/>
+
+                    <!-- Subtitle -->
+                    <TextBlock Text="Правильне слово було:" FontSize="13"
+                               FontFamily="Helvetica Neue, Arial, sans-serif"
+                               Foreground="{DynamicResource SubtleText}"
+                               HorizontalAlignment="Center" Margin="0,0,0,6"/>
+
+                    <!-- The word -->
+                    <TextBlock x:Name="GameOverWord" FontSize="32" FontWeight="Bold"
+                               FontFamily="Helvetica Neue, Arial, sans-serif"
+                               Foreground="#1A73E8"
+                               HorizontalAlignment="Center" Margin="0,0,0,28"/>
+
+                    <!-- Buttons -->
+                    <Button Content="ГРАТИ ЗНОВУ" Style="{StaticResource MainButtonStyle}"
+                            Background="#34A853" Width="220" Margin="0,0,0,10"
+                            Click="OverlayRestart_Click"/>
+
+                    <Button Content="ГОЛОВНЕ МЕНЮ" Style="{StaticResource ExitButtonStyle}"
+                            Width="220"
+                            Click="OverlayMenu_Click"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+
+    </Grid>
+</Page>

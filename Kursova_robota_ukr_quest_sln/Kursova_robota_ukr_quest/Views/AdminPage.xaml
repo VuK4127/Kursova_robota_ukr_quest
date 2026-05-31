@@ -1,0 +1,102 @@
+<Page x:Class="Kursova_robota_ukr_quest.Views.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Адмін-панель" Loaded="Page_Loaded">
+
+    <Grid Background="{DynamicResource WindowBackground}" Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="⚙ Адмін-панель" FontSize="22" FontWeight="Bold"
+                   Foreground="{DynamicResource MainTextBrush}" Margin="0,0,0,12"/>
+
+        <!-- Search bar -->
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="SearchBox" Grid.Column="0"
+                     FontSize="14" Padding="6,4"
+                    />
+            <Button Grid.Column="1" Content="🔍 Знайти"
+                    Style="{StaticResource MainButtonStyle}"
+                    Background="#1A73E8" Margin="6,0,0,0" Padding="10,4"
+                    Click="Search_Click"/>
+            <Button Grid.Column="2" Content="↺ Всі"
+                    Style="{StaticResource MainButtonStyle}"
+                    Background="#757575" Margin="6,0,0,0" Padding="10,4"
+                    Click="ShowAll_Click"/>
+        </Grid>
+
+        <!-- Questions list -->
+        <DataGrid x:Name="QuestionsGrid" Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  Margin="0,0,0,12"
+                  SelectionChanged="QuestionsGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"       Binding="{Binding Id}"             Width="45"/>
+                <DataGridTextColumn Header="Текст"    Binding="{Binding Text}"            Width="*"/>
+                <DataGridTextColumn Header="Відповідь" Binding="{Binding CorrectAnswer}"  Width="130"/>
+                <DataGridTextColumn Header="Категорія" Binding="{Binding Category}"       Width="110"/>
+                <DataGridTextColumn Header="Рівень"   Binding="{Binding Difficulty}"      Width="60"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Edit form + buttons -->
+        <Border Grid.Row="3" Style="{StaticResource CardStyle}" Padding="12">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="TxtQuestion" Grid.Column="0"
+                             FontSize="13" Padding="6,4" Margin="0,0,6,0"
+                            />
+                    <TextBox x:Name="TxtAnswer" Grid.Column="1"
+                             FontSize="13" Padding="6,4" Margin="0,0,6,0"
+                            />
+                    <TextBox x:Name="TxtCategory" Grid.Column="2"
+                             FontSize="13" Padding="6,4" Margin="0,0,6,0"
+                            />
+                    <TextBox x:Name="TxtDifficulty" Grid.Column="3"
+                             FontSize="13" Padding="6,4"
+                            />
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Button Content="➕ Додати"    Style="{StaticResource MainButtonStyle}"
+                            Background="#34A853" Margin="0,0,8,0"
+                            Click="Add_Click"/>
+                    <Button Content="✏ Зберегти"  Style="{StaticResource MainButtonStyle}"
+                            Background="#1A73E8" Margin="0,0,8,0"
+                            Click="Save_Click"/>
+                    <Button x:Name="DeleteBtn"
+                            Content="🗑 Видалити"  Style="{StaticResource MainButtonStyle}"
+                            Background="#EA4335" Margin="0,0,8,0"
+                            IsEnabled="False"
+                            Click="Delete_Click"/>
+                    <Button Content="📊 Звіт"     Style="{StaticResource MainButtonStyle}"
+                            Background="#E67C13" Margin="0,0,8,0"
+                            Click="Report_Click"/>
+                    <Button Content="← Назад"     Style="{StaticResource ExitButtonStyle}"
+                            Click="Back_Click"/>
+                </StackPanel>
+
+                <TextBlock x:Name="StatusText" FontSize="13" Margin="0,8,0,0"
+                           Foreground="{DynamicResource MainTextBrush}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

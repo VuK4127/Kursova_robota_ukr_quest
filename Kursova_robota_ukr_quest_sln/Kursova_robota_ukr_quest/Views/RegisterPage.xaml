@@ -1,0 +1,53 @@
+<Page x:Class="Kursova_robota_ukr_quest.Views.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Реєстрація">
+
+    <Grid Background="{DynamicResource WindowBackground}">
+        <Border Style="{StaticResource CardStyle}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                MinWidth="340" MaxWidth="400" Margin="20">
+            <StackPanel>
+
+                <TextBlock Text="📝 Реєстрація" FontSize="24" FontWeight="Bold"
+                           FontFamily="Helvetica Neue, Arial, sans-serif"
+                           Foreground="{DynamicResource MainTextBrush}"
+                           HorizontalAlignment="Center" Margin="0,0,0,24"/>
+
+                <!-- Нікнейм -->
+                <TextBlock Text="Нікнейм" FontSize="13"
+                           Foreground="{DynamicResource SubtleText}" Margin="0,0,0,4"/>
+                <TextBox x:Name="NicknameBox" Margin="0,0,0,14" KeyDown="Input_KeyDown"/>
+
+                <!-- Логін -->
+                <TextBlock Text="Логін" FontSize="13"
+                           Foreground="{DynamicResource SubtleText}" Margin="0,0,0,4"/>
+                <TextBox x:Name="LoginBox" Margin="0,0,0,14" KeyDown="Input_KeyDown"/>
+
+                <!-- Пароль -->
+                <TextBlock Text="Пароль" FontSize="13"
+                           Foreground="{DynamicResource SubtleText}" Margin="0,0,0,4"/>
+                <PasswordBox x:Name="PasswordBox" Margin="0,0,0,14" KeyDown="Input_KeyDown"/>
+
+                <!-- Підтвердження паролю -->
+                <TextBlock Text="Підтвердіть пароль" FontSize="13"
+                           Foreground="{DynamicResource SubtleText}" Margin="0,0,0,4"/>
+                <PasswordBox x:Name="ConfirmBox" Margin="0,0,0,8" KeyDown="Input_KeyDown"/>
+
+                <!-- Помилка -->
+                <TextBlock x:Name="ErrorText" FontSize="13" Foreground="#EA4335"
+                           HorizontalAlignment="Center" Margin="0,0,0,14" Text=""
+                           TextWrapping="Wrap" TextAlignment="Center"/>
+
+                <Button Content="ЗАРЕЄСТРУВАТИСЬ" Style="{StaticResource MainButtonStyle}"
+                        Background="#34A853" Width="280" Margin="0,0,0,10"
+                        Click="Register_Click"/>
+
+                <Button Content="Вже є акаунт? Увійти" Style="{StaticResource ExitButtonStyle}"
+                        Width="280"
+                        Click="GoLogin_Click"/>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
